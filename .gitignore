@@ -3,4 +3,5 @@ local_settings.py
 db.sqlite3
 .idea
 __pycache__
-Docker*
+Dockerfile
+docker-compose.yml
