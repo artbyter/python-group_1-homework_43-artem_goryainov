@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 class="text-center">{{ article.title }}</h2>
+    <h3 class="text-left font-italic">{{ article.author }}</h3>
+    <p>{{ article.text }}</p>
+    <h3 class="text-left font-italic">Оценки</h3>
+    {% for rank in article.ranking_set.all %}
+        <h3 class="text-left font-italic">{{ rank.ranking }}</h3>
+        <h3 class="text-left font-italic"> Автор {{ rank.user }}</h3>
+    {% endfor %}
+    <h3 class="text-left font-italic">Комментарии</h3>
+
+        {% include 'comment.html' with article=article %}
+
+{% endblock content %}

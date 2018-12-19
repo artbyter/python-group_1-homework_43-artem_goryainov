@@ -1,0 +1,24 @@
+
+
+{% for comment in article.comment_set.all %}
+    {% if comment %}
+
+        <p>
+            <a data-toggle="collapse" href="#comment{{ comment.pk }}" role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample">
+                + <hr>
+            </a>
+
+        </p>
+        <div class="collapse" id="comment{{ comment.pk }}">
+        <div class=" pl-3">
+            {{ comment.text }}
+            <h3 class="text-left font-italic"> Автор {{ comment.author }}</h3>
+        {% include 'comment.html' with article=comment %}
+        </div>
+
+
+    {% endif %}
+{% endfor %}
+</div>
