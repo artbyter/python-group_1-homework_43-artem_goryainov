@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2 class="text-center">{{ article.title }}</h2>
-    <h3 class="text-left font-italic">{{ article.author }}</h3>
+
+    <h5 class="text-left font-italic"> Автор: {{ article.author }}</h5>
+    <a class="float-right" href="{% url 'edit_article' article.pk %}">Редактировать статью</a>
+    <br>
+    <a class="float-right" href="{% url 'create_comment' %}">Добавить комментарий</a>
     <p>{{ article.text }}</p>
-    <h3 class="text-left font-italic">Оценки</h3>
+    <h5 class="text-left font-italic">Оценки</h5>
+    <hr>
     {% for rank in article.ranking_set.all %}
-        <h3 class="text-left font-italic">{{ rank.get_ranking_display }}</h3>
-        <h3 class="text-left font-italic"> Автор {{ rank.user }}</h3>
+        <strong class="text-left font-italic">{{ rank.get_ranking_display }}</strong>
+        <h5 class="text-left font-italic ml-5"> Автор: {{ rank.user }}</h5>
+        <hr>
     {% endfor %}
-    <h3 class="text-left font-italic">Комментарии</h3>
+    <h5 class="text-left font-italic">Комментарии</h5>
 
         {% include 'comment.html' with article=article %}
 

@@ -14,7 +14,8 @@
         <div class="collapse" id="comment{{ comment.pk }}">
         <div class=" pl-3">
             {{ comment.text }}
-            <h3 class="text-left font-italic"> Автор {{ comment.author }}</h3>
+            <a class="float-right" href="{% url 'edit_comment' comment.pk %}" >Редактировать комментарий</a>
+            <h5 class="text-left font-italic ml-3"> Автор: {{ comment.author }}</h5>
         {% include 'comment.html' with article=comment %}
         </div>
 
