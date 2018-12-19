@@ -22,6 +22,9 @@ class Article(models.Model):
     rankings = models.ManyToManyField('User', through='Ranking', related_name='rated_by',
                                       verbose_name='Оценки')
 
+    def __str__(self):
+        return self.title
+
 
 class Comment(models.Model):
     parent = models.ForeignKey('self', on_delete=models.PROTECT, null=True, blank=True,
@@ -32,13 +35,14 @@ class Comment(models.Model):
 
 
 class Ranking(models.Model):
-    rank = {
+    rank = (
         (1, "Ужасно"),
         (2, "Плохо"),
         (3, "Нормально"),
         (4, "Хорошо"),
         (5, "Отлично"),
-    }
+    )
+    rank_dict ={key:value for key,value in rank}
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     article = models.ForeignKey('Article', on_delete=models.PROTECT)
     ranking = models.IntegerField(choices=rank, verbose_name='Оценка')

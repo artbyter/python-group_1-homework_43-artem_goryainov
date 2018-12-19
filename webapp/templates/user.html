@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 class="text-center">{{ user.name }}</h2>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th class="col-sm-10" scope="col">Заголовок</th>
+            <th class="col-sm-2" scope="col">Подробнее</th>
+
+        </tr>
+        </thead>
+        {% for article in user.article_set.all %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td class="text-center"><a href="{% url 'article_detail' article.pk %}"><i
+                        class="fas fa-info-circle"></i> </a></td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock content %}

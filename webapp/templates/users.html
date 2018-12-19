@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="offset-3 col-6">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th class="col-sm-10" scope="col">Имя пользователя</th>
+                <th class="col-sm-1" scope="col">Подробнее</th>
+                <th class="col-sm-1" scope="col">Избранное</th>
+
+            </tr>
+            </thead>
+            {% for user in object_list %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td class="text-center"><a href="{% url 'user_detail' user.pk %}"><i class="fas fa-info-circle"></i>
+                    </a></td>
+                    <td class="text-center"><a href="{% url 'favorites_list' user.pk %}"><i class="fas fa-heart"></i>
+                    </a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock content %}
